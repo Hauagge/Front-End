@@ -47,14 +47,16 @@ export default function Login({ history }) {
 
                     <div className='logo'>
                       
-                            <form onSubmit={HandleSubmit}>
-                                <img src={logo} alt="logo" />
-
-                                <input placeholder="Digite seu login"
-                                    value={username}
-                                    onChange={e => setUsername(e.target.value)} />
-                                <button type="submit">Próximo</button>
-
+                            <form onSubmit={HandleSubmit} >
+                                <img src={logo} alt="logo" width='30%' />
+                                <div className='formInput'>
+                                    <input placeholder="Digite seu login"
+                                        value={username}
+                                        onChange={e => setUsername(e.target.value)}
+                                        className='textInputSubmit' />
+                                    <button className='buttonSubmit' type="submit">Próximo</button>
+                                    <a href='#'>Esqueci minha senha</a>
+                                </div>
                             </form>
             
                     </div>
