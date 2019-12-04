@@ -10,19 +10,36 @@ import fundo from '../assets/tela_fundo.png'
 
 
 export default function Login({ history }) {
-    const [username, setUsername] = useState('');
-
-
+    const [user, setUser] = useState('');
+    const [userExist,setuserExist] = useState('')
+ 
 
     async function HandleSubmit(e) {
         e.preventDefault();
+        
+        const response = await api.post('/login', { 
+            user 
+        });
+        
+        if(!await response.json === 1)
+            setuserExist(true);
 
-        const response = await api.get('/auth', { username })
+        
+        }
 
-        const { user } = response.data;
-        console.log(user);
-
-    }
+    function Warning(e){
+        console.log(e.warn)
+        if (!e.warn) {
+            return null;
+          }
+        
+          return (
+            <div className="warning">
+              Usuário não existe
+            </div>
+          );
+        }
+    
     return (
         <div>
             <div>
@@ -49,11 +66,14 @@ export default function Login({ history }) {
                       
                             <form onSubmit={HandleSubmit}>
                                 <img src={logo} alt="logo" />
-
+                                
+                                 <Warning warn= {userExist}  />
+                                 
                                 <input placeholder="Digite seu login"
-                                    value={username}
-                                    onChange={e => setUsername(e.target.value)} />
+                                    value={user}
+                                    onChange={e => setUser(e.target.value)} />
                                 <button type="submit">Próximo</button>
+                                <a href='#'>Esqueci meu usuário</a>
 
                             </form>
             
