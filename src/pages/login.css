@@ -65,15 +65,17 @@
     font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
 }
 
-a{
+.a{
+   
     text-decoration: inherit;
     color: #0000ee;
     font-size: large;
     font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+ 
 }
 
 .logo form input{
-    max-width: 55%;
+    max-width: 100%;
     width: 55%;
     align-items: center;
     vertical-align: middle;
@@ -90,7 +92,7 @@ a{
 }
 
 .logo form button{
-    width: 55%;
+    width: 100%;
     border-radius: 22px;
     font-size: x-large;
     border-width: 0;

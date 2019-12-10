@@ -11,35 +11,59 @@ import fundo from '../assets/tela_fundo.png'
 
 export default function Login({ history }) {
     const [user, setUser] = useState('');
-    const [userExist,setuserExist] = useState('')
- 
+    const [senha, setSenha] = useState('');
+    const [userExist, setuserExist] = useState(false)
+    const [isLogged, setisLogged] = useState(false)
+    const [isCorrectPassword, setisCorrectPassword] = useState(false)
 
-    async function HandleSubmit(e) {
+    async function handleSubmit(e) {
         e.preventDefault();
-        
-        const response = await api.post('/login', { 
-            user 
+
+        const response = await api.post('/login', {
+            user
         });
-        
-        if(!await response.json === 1)
-            setuserExist(true);
+        console.log(response)
 
-        
+        if (response.data === "") {
+            setuserExist(true)
+        } else {
+            setuserExist(false)
+            setisLogged(true)
+            
         }
 
-    function Warning(e){
-        console.log(e.warn)
-        if (!e.warn) {
-            return null;
-          }
+       
         
-          return (
-            <div className="warning">
-              Usuário não existe
-            </div>
-          );
+
+    }
+
+    async function HandleSubmitSenha(e) {
+        e.preventDefault();
+        const response = await api.post('/login', {
+            user,
+            senha
+        });
+
+        console.log(response)
+      
+        if (response.data === "") {
+            setisCorrectPassword(true);
+
+        
+
+        } else {
+            setisCorrectPassword(false);
+            history.push('/main');
+            console.log(response.status)
         }
-    
+
+
+        
+    }
+
+
+
+
     return (
         <div>
             <div>
@@ -50,7 +74,7 @@ export default function Login({ history }) {
                             backgroundPosition: 'center',
                             backgroundRepeat: 'no-repeat',
                             backgroundSize: '100% auto',
-                            
+
                         }}>
                             <div style={{
                                 backgroundColor: 'rgba(34, 139, 34, 0.281)',
@@ -63,25 +87,54 @@ export default function Login({ history }) {
                     </div>
 
                     <div className='logo'>
-                      
-                            <form onSubmit={HandleSubmit}>
-                                <img src={logo} alt="logo" />
-                                
-                                 <Warning warn= {userExist}  />
-                                 
-                                <input placeholder="Digite seu login"
-                                    value={user}
-                                    onChange={e => setUser(e.target.value)} />
-                                <button type="submit">Próximo</button>
-                                <a href='#'>Esqueci meu usuário</a>
 
-                            </form>
-            
+                        <form onSubmit={handleSubmit}>
+                            <img src={logo} alt="logo" />
+
+
+                            {userExist && (
+                                <div className="warning">
+                                    Usuário não existe
+                                        </div>
+                            )}
+
+                           
+
+
+                            {!isLogged &&
+                                (<div className='logo'>
+                                    <input placeholder="Digite seu login"
+                                        value={user}
+                                        onChange={e => setUser(e.target.value)} />
+                                    <button type="submit">Próximo</button>
+
+                                </div>
+                                )}
+
+                        </form>
+
+                        <form onSubmit={HandleSubmitSenha}>
+                        {isCorrectPassword && (
+                                <div className="warning">
+                                    Senha Incorreta
+                                        </div>
+                            )}
+                            {isLogged &&
+                                (<div className='logo'>
+                                    <input placeholder="Digite sua senha"
+                                        type="password"
+                                        value={senha}
+                                        onChange={e => setSenha(e.target.value)} />
+                                    <button type="submit">Entrar</button>
+
+                                    {/* <a href='#'>Esqueci meu usuário</a> */}
+
+                                </div>
+                                )}
+                            <a href='#'>Esqueci meu usuário</a>
+                        </form>
                     </div>
                 </div>
-
-
-
 
                 <footer>
 
