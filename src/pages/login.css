@@ -113,3 +113,7 @@ a{
     font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
     text-align: left;
 }
+
+footer{
+    background: #00000030 0% 0% no-repeat padding-box;
+}

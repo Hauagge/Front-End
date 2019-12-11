@@ -136,8 +136,8 @@ export default function Login({ history }) {
                     </div>
                 </div>
 
-                <footer>
-
+                <footer >
+                                 
                 </footer>
             </div>
 
