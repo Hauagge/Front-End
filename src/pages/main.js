@@ -10,7 +10,7 @@ import formulario from '../assets/Formulario.svg'
 
 export default function Main() {
     return (
-        <div className="container">
+        <div className="containerMain">
             <header className="header">
                 <img src={home} />
                 <a href='#'> Início</a>
