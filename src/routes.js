@@ -1,14 +1,35 @@
 import React from 'react'
-import {BrowserRouter, Route} from 'react-router-dom';
-import Login from './pages/login'
-import Main from './pages/main'
+import { BrowserRouter, Route} from 'react-router-dom';
 
-export default function Routes(){
-    return(
+import Navbar from './pages/navbar'
+import Header from './pages/header'
+import Login from './pages/login'
+import FormulaOpUm from './pages/FormulaOpUm'
+import Main from './pages/main'
+import Calc from './pages/calculadora'
+
+import './pages/navbar.css'
+
+export default function Routes() {
+    return (
         <BrowserRouter>
-            <Route  path="/" exact component={Login}/>
-            <Route  path="/main" exact component={Main}/>
             
+                <div className="App">
+                    <Route exact path="/" render={() => <Login />} />
+
+                    <Route  path='/main'> 
+                     <Navbar />
+                     <Header />
+                     <Main/>
+                      </Route>
+                    {/* <Route  path='/main' render={() => } /> */}
+                    <Route  path='/calculadora/' render={() => <Navbar />} />
+                    <Route  path='/calculadora/' render={() => <Header />} />
+
+                    {/* <Route exact path='/main' component={Main} /> */}
+                    <Route exact path='/calculadora' render={() => <Calc />} />
+                    <Route exact path='/calculadora/formularioUm' render={() => <FormulaOpUm />} />
+                </div>
         </BrowserRouter>
     )
 }

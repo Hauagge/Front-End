@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import api from '../services/api'
+import { useHistory} from 'react-router-dom';
 
 
 import './login.css'
@@ -9,13 +10,14 @@ import fundo from '../assets/tela_fundo.png'
 
 
 
-export default function Login({ history }) {
+export default function Login(props) {
     const [user, setUser] = useState('');
     const [senha, setSenha] = useState('');
-    const [userExist, setuserExist] = useState(false)
-    const [isLogged, setisLogged] = useState(false)
-    const [isCorrectPassword, setisCorrectPassword] = useState(false)
-
+    const [userExist, setuserExist] = useState(false);
+    const [isLogged, setisLogged] = useState(false);
+    const [isCorrectPassword, setisCorrectPassword] = useState(false);
+    const history = useHistory();
+    
     async function handleSubmit(e) {
         e.preventDefault();
 
@@ -53,7 +55,7 @@ export default function Login({ history }) {
 
         } else {
             setisCorrectPassword(false);
-            history.push('/main');
+            history.push("/main");
             console.log(response.status)
         }
 
@@ -107,6 +109,7 @@ export default function Login({ history }) {
                                         value={user}
                                         onChange={e => setUser(e.target.value)} />
                                     <button type="submit">Próximo</button>
+                                    <a href='#'>Esqueci meu usuário</a> 
 
                                 </div>
                                 )}
@@ -127,11 +130,11 @@ export default function Login({ history }) {
                                         onChange={e => setSenha(e.target.value)} />
                                     <button type="submit">Entrar</button>
 
-                                    {/* <a href='#'>Esqueci meu usuário</a> */}
+                                    <a href='#'>Esqueci minha senha</a>
 
                                 </div>
                                 )}
-                            <a href='#'>Esqueci meu usuário</a>
+                            
                         </form>
                     </div>
                 </div>

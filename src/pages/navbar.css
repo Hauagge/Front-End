@@ -1,0 +1,75 @@
+@font-face {
+	font-family: 'GothamBook';
+	src: url('../fontes/Gotham/GothamBook.ttf');
+	font-style: normal;
+}
+
+.containerMain{
+    background: #002661;
+    max-width: 132px;
+    flex: 1;
+    height: 100vh;
+    width: 100vw;
+    
+}
+
+
+
+.App {
+    display:flex;
+    min-height: 100vh;
+    max-width: 100vw;
+    /* flex-direction: row; */
+    margin: 0;
+    background-color: #fff;
+    
+}
+
+
+.content {
+    display: flex;
+    flex-direction: row;
+  }
+
+  .mainContent{
+    flex: 4;
+    min-height: 60vh;
+  }
+
+
+  
+  .item{
+   
+    display:flex;
+    padding-top: 5px;
+    padding-bottom: 10px; 
+    border-top: 2px solid #003E9A;
+    max-width: 150px;
+    
+    
+} 
+
+
+
+
+.containerMain  img{
+    max-width: 50px;
+    padding:0px;
+    margin-left:10px;
+    margin-bottom: 10px;
+   
+
+}
+
+.containerMain  a {
+   
+    color:white;
+    left:0;
+    right: auto;
+    display:flex;
+    justify-content:right;
+    align-items:center;
+    font-size: 10px;
+    font-family: GothamBook ;
+}
+
