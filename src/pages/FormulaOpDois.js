@@ -174,13 +174,7 @@ export default function Calculo() {
                             <option value="1.9" >Acima de 88                  </option>
                         </select>
 
-                        <label>NP</label>
-                        <input
-                            name='NP'
-                            type='number'
-                            placeholder='Número de processos reunidos no mesmo procedimento'
-                            value={state.NP}
-                            onChange={handleChange} />
+                       
 
                     </div>
                 </form>

@@ -30,12 +30,8 @@ export default function Login(props) {
             setuserExist(true)
         } else {
             setuserExist(false)
-            setisLogged(true)
-            
+            setisLogged(true)      
         }
-
-       
-        
 
     }
 

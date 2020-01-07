@@ -6,19 +6,22 @@
 
 }
 .headerContent{   
-   
+    display:flex;
     background: #007F3D;
     height: 65px;
     min-height: 65px;
-    width: 961px;
+    width: 879px;
     right: 0;
     top: 0;
     left: auto;
-    position: absolute; 
+    /* position: absolute;  */
+    flex-shrink: 0;
+   
 } 
 
 .itensHeader{
     display: flex;
     justify-content: space-between;
     flex-direction: row;
+    flex:5;
 }

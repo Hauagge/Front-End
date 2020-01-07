@@ -14,7 +14,8 @@ main{
     justify-content: space-around;
     align-items: center;
     flex-direction: column;
-
+    position: absolute;
+    left:132px; 
     }
 
 

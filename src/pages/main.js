@@ -5,6 +5,6 @@ import './main.css'
 export default function Main({history}){
 
     return(
-        <div><h1>Hello guys</h1></div>
+        <div className="Container"><h1>Hello guys</h1></div>
     )
 }

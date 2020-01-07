@@ -1,2 +1,15 @@
 
 
+.Container{
+    margin-top:65px;
+     background: #EFF1F4 0% 0% no-repeat padding-box;;
+     display: flex;
+     max-width: 100%;
+     width: 880px;
+     height: 425px;
+     justify-content: center;
+     align-items: center;
+     flex-direction: column;
+     position: absolute;
+     left: 132px;
+ }

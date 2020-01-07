@@ -71,5 +71,6 @@
     align-items:center;
     font-size: 10px;
     font-family: GothamBook ;
+    flex-shrink: 0;
 }
 
