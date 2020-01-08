@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 
 
@@ -38,8 +38,8 @@ export default function Calculo() {
     return (
 
             <div className="blocos">
-                <h1>Fórmula aplicável a Processos Administrativos Individual</h1>
-                <h1>VM=R${VM.   toFixed(2)}</h1>
+                <h2>Fórmula aplicável a Processos Administrativos Individual</h2>
+                <h2>VM=R${VM.   toFixed(2)}</h2>
                 <form className="formulario" >
 
                     <div className="coluna">

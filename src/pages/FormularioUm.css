@@ -21,8 +21,8 @@
     background: #EFF1F4 0% 0% no-repeat padding-box;;
     display: flex;
     max-width: 100%;
-    width: 880px;
-    height: 425px;
+    width: 960px;
+    height: 465px;
     justify-content: center;
     align-items: center;
     flex-direction: column;
@@ -48,12 +48,12 @@
     border: none;
     border-bottom: 1px solid rgba(0, 0, 0, 0.26);
   }
-  h1{
+  h2{
       max-width: 700px;
       text-align: center;
   }
   .botao{
-      margin-top: 50px;
+        margin-top: 50px;
         width: 100%;
         display: flex;
         justify-content: space-around;

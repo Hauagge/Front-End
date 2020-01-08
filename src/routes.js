@@ -5,6 +5,7 @@ import Navbar from './pages/navbar'
 import Header from './pages/header'
 import Login from './pages/login'
 import FormulaOpUm from './pages/FormulaOpUm'
+import FormulaOpDois from './pages/FormulaOpDois'
 import Main from './pages/main'
 import Calc from './pages/calculadora'
 
@@ -28,7 +29,8 @@ export default function Routes() {
 
                     {/* <Route exact path='/main' component={Main} /> */}
                     <Route exact path='/calculadora' render={() => <Calc />} />
-                    <Route exact path='/calculadora/formularioUm' render={() => <FormulaOpUm />} />
+                    <Route exact path='/calculadora/AdmIndividual' render={() => <FormulaOpUm />} />
+                    <Route exact path='/calculadora/AdmPorAtoDeOficio' render={() => <FormulaOpDois />} />
                 </div>
         </BrowserRouter>
     )

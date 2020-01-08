@@ -65,7 +65,7 @@ export default function Login(props) {
     return (
         <div>
             <div>
-                <div className='container'>
+                <div className='containerLogin'>
                     <div className='grid-container'>
                         <div style={{
                             background: 'url(' + fundo + ')',

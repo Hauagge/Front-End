@@ -5,11 +5,11 @@ export default function Calc(props) {
         const history = useHistory();
 
          function HandleClickIndividual() {
-                history.push( '/calculadora/formularioUm');
+                history.push( '/calculadora/AdmIndividual');
         }
 
        function HandleClickPorAto() {
-                history.push('/AdmPorAtoDeOficio');
+                history.push('/calculadora/AdmPorAtoDeOficio');
         }
         return (
                <div>    
