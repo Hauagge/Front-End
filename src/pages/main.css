@@ -5,11 +5,11 @@
      background: #EFF1F4 0% 0% no-repeat padding-box;;
      display: flex;
      max-width: 100%;
-     width: 960px;
-     height: 465px;
+     width: 89%;
+     height: 90%;
      justify-content: center;
      align-items: center;
      flex-direction: column;
      position: absolute;
-     left: 132px;
+     left: 149px;
  }

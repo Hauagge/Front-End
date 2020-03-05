@@ -1,5 +1,5 @@
 import React from 'react'
-
+import { NavLink } from 'react-router-dom';
 import home from '../assets/Home.svg';
 import notificacoes from '../assets/Notificacoes.svg';
 
@@ -12,7 +12,7 @@ const Menu = () => (
                                 <div className="itensHeader">
                                         <ul style={{display:'Flex', alignItems:'center'}}>
                                                 <img src={home} className='imagem' />
-                                                <a href='#'> Início</a>
+                                                <NavLink to='/main'> Início</NavLink>
                                         </ul>
                                         <ul>
                                                 <img src={notificacoes} />

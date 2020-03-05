@@ -1,5 +1,9 @@
-import React, { useState } from 'react'
-import {Form} from 'react-bootstrap'
+import React, { useState, useEffect } from 'react'
+import CurrencyInput from 'react-currency-input'
+import Modals from '../modules/Modal';
+import ModalsAT from '../modules/ModalAT'
+import ModalsAG from '../modules/ModalAG'
+import { Button } from 'react-bootstrap';
 
 
 
@@ -18,54 +22,83 @@ export default function Calculo() {
         REI: 1,
         NP: 1,
     })
-
+    const [lgShowIG, setLgShowIG] = useState();
+    const [lgShowAT, setLgShowAT] = useState();
+    const [lgShowAG, setLgShowAG] = useState();
+    
+    useEffect(() => formula(), [state.IG, state.SE, state.VA, state.AT, state.AG, state.REI, state.NP]);
     const [VM, setVM] = useState(state.MM)
-    function handleChange(e) {
 
+    function handleChange(e) {
         const value = e.target.value;
         setState({
             ...state,
             [e.target.name]: value
 
+
         })
-        if (e.target.name !== 'infracao')
-            setVM(VM * value)
+
 
     }
+    function formula() {
 
+        let { MM, IG, SE, VA, AT, AG, REI, NP } = state
+        setVM(MM * IG * SE * VA * AT * AG * REI * NP)
 
+    } 
+    function onToggle(e) {
+        const modal = e.target.name;
+        console.log(modal)
+        if(modal==='modalIG'){
+         setLgShowIG(!lgShowIG);
+        }
 
+        if(modal==='modalAT'){
+            setLgShowAT(!lgShowAT);
+           }
+
+        if(modal==='modalAG'){
+            setLgShowAG(!lgShowAG);
+        }
+    }
     return (
 
         <div className="blocos">
-            <h2>Fórmula aplicável a Processos Administrativos instaurado por Ato de Ofício</h2>
-            <h2>VM=R${VM.toFixed(2)}</h2>
+            <h4 >Fórmula aplicável a Processos Administrativos instaurado por Ato de Ofício</h4  >
+            <h4 >VM= <CurrencyInput className="inputVM" disabled="disabled" decimalSeparator="," thousandSeparator="." precision="2" prefix="R$" value={VM} /> </h4 >
             <form className="formulario" >
 
                 <div className="coluna">
-                    <label>MM</label>   
+                    <label>MM</label>
                     <input
+                        style={{ backgroundColor: "#fff", borderBottom: "1px solid rgba(0, 0, 0, 0.26)" }}
                         name='MM'
                         type='number'
                         placeholder='650,28'
                         value={state.MM}
                         onChange={handleChange}
-                        id='customSwitches'
-                        disabled />
-
-                  
-
-                    <label>IG</label>
+                    />
+                    <Button className='btnModal'
+                        variant='Link'
+                        name='modalIG'
+                        onClick={e => {
+                            onToggle(e);
+                        }}
+                    >
+                        {" "}
+                        IG = {state.IG}{" "}
+                    </Button>
+                    <Modals onClose={e => onToggle(e)} show={lgShowIG} Onchecked={e =>handleChange(e)} />
                     <select
                         name='IG'
                         value={state.IG}
                         onChange={handleChange}>
-                        <option value=""  >Selecione</option>
                         <option value="1" >Grupo I</option>
                         <option value="2" >Grupo II</option>
                         <option value="3" >Grupo III</option>
                     </select>
-                    <label>Infração</label>
+
+                    <label>Extensão do Dano</label>
                     <select
                         name='infracao'
                         value={state.infracao}
@@ -75,46 +108,51 @@ export default function Calculo() {
                         <option value="coletivo"   >Infração de Carater coletivo</option>
                         <option value="difuso" >Infração de Carater Difuso</option>
                     </select>
-                    <label>SE</label>
-                    {state.infracao === 'homogeneo' &&
 
-                        <select
-                            name='SE'
-                            value={state.SE}
-                            onChange={handleChange}>
-                            <option value="1"  >Selecione</option>
-                            <option value="1.5" >Microempresa Individual</option>
-                            <option value="2"   >Microempresa</option>
-                            <option value="2.5" >Empresa de pequeno porte</option>
-                            <option value="3"   >Media Empresa</option>
-                            <option value="3.5" >Grande Empresa</option>
-                        </select>}
+                    {state.infracao === 'homogeneo' &&
+                        <>
+                            <label>SE</label>
+                            <select
+                                name='SE'
+                                value={state.SE}
+                                onChange={handleChange}>
+                                <option value="1"  >Selecione</option>
+                                <option value="1.5" >Microempresa Individual</option>
+                                <option value="2"   >Microempresa</option>
+                                <option value="2.5" >Empresa de pequeno porte</option>
+                                <option value="3"   >Media Empresa</option>
+                                <option value="3.5" >Grande Empresa</option>
+                            </select> </>}
 
                     {state.infracao === 'coletivo' &&
-                        <select
-                            name='SE'
-                            value={state.SE}
-                            onChange={handleChange}>
-                            <option value="1"  >Selecione</option>
-                            <option value="20" >Microempresa Individual</option>
-                            <option value="25"   >Microempresa</option>
-                            <option value="30" >Empresa de pequeno porte</option>
-                            <option value="35"   >Media Empresa</option>
-                            <option value="40" >Grande Empresa</option>
-                        </select>}
+                        <>
+                            <label>SE</label>
+                            <select
+                                name='SE'
+                                value={state.SE}
+                                onChange={handleChange}>
+                                <option value="1"  >Selecione</option>
+                                <option value="20" >Microempresa Individual</option>
+                                <option value="25"   >Microempresa</option>
+                                <option value="30" >Empresa de pequeno porte</option>
+                                <option value="35"   >Media Empresa</option>
+                                <option value="40" >Grande Empresa</option>
+                            </select></>}
 
                     {state.infracao === 'difuso' &&
-                        <select
-                            name='SE'
-                            value={state.SE}
-                            onChange={handleChange}>
-                            <option value="1"  >Selecione</option>
-                            <option value="30" >Microempresa Individual</option>
-                            <option value="35"   >Microempresa</option>
-                            <option value="40" >Empresa de pequeno porte</option>
-                            <option value="45"   >Media Empresa</option>
-                            <option value="50" >Grande Empresa</option>
-                        </select>}
+                        <>
+                            <label>SE</label>
+                            <select
+                                name='SE'
+                                value={state.SE}
+                                onChange={handleChange}>
+                                <option value="1"  >Selecione</option>
+                                <option value="30" >Microempresa Individual</option>
+                                <option value="35"   >Microempresa</option>
+                                <option value="40" >Empresa de pequeno porte</option>
+                                <option value="45"   >Media Empresa</option>
+                                <option value="50" >Grande Empresa</option>
+                            </select></>}
 
                     <label>VA</label>
                     <select
@@ -122,7 +160,7 @@ export default function Calculo() {
                         value={state.VA}
                         onChange={handleChange}
                     >
-                        <option value="1" >Selecione </option>
+                        <option value="1"   >Não Quantificável                </option>
                         <option value="1.2" >Dano de 0,01 até 100,00         </option>
                         <option value="1.3" >Dano de 100,01 até 1.000,00     </option>
                         <option value="1.4" >Dano de 1.000,01 até 10.000,00  </option>
@@ -131,11 +169,21 @@ export default function Calculo() {
                         <option value="1.7" >Dano de 100.000,01 até 300.000,00</option>
                         <option value="1.8" >Dano de 300.000,01 até 700.000,00</option>
                         <option value="1.9" >Acima de 700.000,00              </option>
-                        <option value="1"   >Não Quantificável                </option>
+
                     </select>
                 </div>
                 <div className="coluna">
-                    <label>AT</label>
+                <Button className='btnModal'
+                        name='modalAT'
+                        variant='Link'
+                        onClick={e => {
+                            onToggle(e);
+                        }}
+                    >
+                        {" "}
+                        AT = {state.AT}{" "}
+                    </Button>
+                    <ModalsAT onClose={(e) => onToggle(e)} show={lgShowAT} Onchecked={e =>handleChange(e)} />
                     <select
                         name='AT'
                         value={state.AT}
@@ -146,7 +194,17 @@ export default function Calculo() {
                         <option value="0.7" >3        </option>
                     </select>
 
-                    <label>AG</label>
+                    <Button className='btnModal'
+                        name='modalAG'
+                        variant='Link'
+                        onClick={e => {
+                            onToggle(e);
+                        }}
+                    >
+                        {" "}
+                        AG = {state.AG}{" "}
+                    </Button>
+                    <ModalsAG onClose={(e) => onToggle(e)} show={lgShowAG} Onchecked={e =>handleChange(e)} />
 
                     <select
                         name='AG'
